@@ -27,6 +27,8 @@ BEGIN_MESSAGE_MAP(CMFCBasicPractice1View, CView)
 	ON_WM_RBUTTONUP()
 	ON_WM_LBUTTONDOWN()
 	ON_WM_LBUTTONUP()
+//	ON_WM_MOUSEMOVE()
+ON_WM_MOUSEMOVE()
 END_MESSAGE_MAP()
 
 // CMFCBasicPractice1View 构造/析构
@@ -34,6 +36,7 @@ END_MESSAGE_MAP()
 CMFCBasicPractice1View::CMFCBasicPractice1View() noexcept
 {
 	// TODO: 在此处添加构造代码
+	m_pPressed = false;
 
 }
 
@@ -102,8 +105,8 @@ CMFCBasicPractice1Doc* CMFCBasicPractice1View::GetDocument() const // 非调试�
 void CMFCBasicPractice1View::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
-
 	m_pOrigin = point;
+	m_pPressed = true;
 
 	CView::OnLButtonDown(nFlags, point);
 }
@@ -112,48 +115,22 @@ void CMFCBasicPractice1View::OnLButtonDown(UINT nFlags, CPoint point)
 void CMFCBasicPractice1View::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
-	/* // 获取设备上下文
-	CDC* pDC = GetDC();
-
-	CPen pen(PS_SOLID, 2, RGB(130, 244, 122));
-
-	CPen* pOldPen = pDC->SelectObject(&pen);
-
-	// 移动画笔到起点
-	pDC->MoveTo(m_pOrigin);
-
-	// 在起点和终点间绘制直线
-	pDC->LineTo(point);
-
-	// 设备上下文恢复原画笔
-	pDC->SelectObject(pOldPen);
-
-	// 释放设备上下文
-	ReleaseDC(pDC);
-	*/
-
-	/* CClientDC dc(this);
-
-	CBrush *pBrush = CBrush::FromHandle((HBRUSH)GetStockObject(NULL_BRUSH));
-
-	CBrush* pOldBrush = dc.SelectObject(pBrush);
-
-	// 绘制矩形
-	dc.Rectangle(CRect(m_pOrigin, point));
-
-	// 恢复原画刷
-	dc.SelectObject(pOldBrush);
-	*/
-
-	CClientDC dc(this);
-	// CBrush brush(RGB(0, 255, 0));
-
-	CBitmap bitmap;
-	bitmap.LoadBitmapW(IDB_BITMAP1);
-	
-	CBrush brush(&bitmap);
-
-	dc.FillRect(CRect(m_pOrigin, point), &brush);
-
+	m_pPressed = false;
 	CView::OnLButtonUp(nFlags, point);
+}
+
+
+void CMFCBasicPractice1View::OnMouseMove(UINT nFlags, CPoint point)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	if (m_pPressed)
+	{
+		CClientDC dc(this);
+		dc.MoveTo(m_pOrigin);
+		dc.LineTo(point);
+		m_pOrigin = point;
+	}
+
+
+	CView::OnMouseMove(nFlags, point);
 }
