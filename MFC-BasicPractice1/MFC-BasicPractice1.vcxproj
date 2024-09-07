@@ -212,6 +212,7 @@
     <ResourceCompile Include="MFCBasicPractice1.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\bitmap1.bmp" />
     <Image Include="res\MFC-BasicPractice1.ico" />
     <Image Include="res\MFC-BasicPractice1Doc.ico" />
     <Image Include="res\Toolbar.bmp" />

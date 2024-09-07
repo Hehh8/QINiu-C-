@@ -132,7 +132,7 @@ void CMFCBasicPractice1View::OnLButtonUp(UINT nFlags, CPoint point)
 	ReleaseDC(pDC);
 	*/
 
-	CClientDC dc(this);
+	/* CClientDC dc(this);
 
 	CBrush *pBrush = CBrush::FromHandle((HBRUSH)GetStockObject(NULL_BRUSH));
 
@@ -143,6 +143,17 @@ void CMFCBasicPractice1View::OnLButtonUp(UINT nFlags, CPoint point)
 
 	// 恢复原画刷
 	dc.SelectObject(pOldBrush);
+	*/
+
+	CClientDC dc(this);
+	// CBrush brush(RGB(0, 255, 0));
+
+	CBitmap bitmap;
+	bitmap.LoadBitmapW(IDB_BITMAP1);
+	
+	CBrush brush(&bitmap);
+
+	dc.FillRect(CRect(m_pOrigin, point), &brush);
 
 	CView::OnLButtonUp(nFlags, point);
 }
