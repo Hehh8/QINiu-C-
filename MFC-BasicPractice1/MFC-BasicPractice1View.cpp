@@ -25,6 +25,8 @@ IMPLEMENT_DYNCREATE(CMFCBasicPractice1View, CView)
 BEGIN_MESSAGE_MAP(CMFCBasicPractice1View, CView)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
+	ON_WM_LBUTTONDOWN()
+	ON_WM_LBUTTONUP()
 END_MESSAGE_MAP()
 
 // CMFCBasicPractice1View 构造/析构
@@ -95,3 +97,38 @@ CMFCBasicPractice1Doc* CMFCBasicPractice1View::GetDocument() const // 非调试�
 
 
 // CMFCBasicPractice1View 消息处理程序
+
+
+void CMFCBasicPractice1View::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+
+	m_pOrigin = point;
+
+	CView::OnLButtonDown(nFlags, point);
+}
+
+
+void CMFCBasicPractice1View::OnLButtonUp(UINT nFlags, CPoint point)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	// 获取设备上下文
+	CDC* pDC = GetDC();
+
+	CPen pen(PS_SOLID, 2, RGB(130, 244, 122));
+
+	CPen* pOldPen = pDC->SelectObject(&pen);
+
+	// 移动画笔到起点
+	pDC->MoveTo(m_pOrigin);
+
+	// 在起点和终点间绘制直线
+	pDC->LineTo(point);
+
+	// 设备上下文恢复原画笔
+	pDC->SelectObject(pOldPen);
+
+	// 释放设备上下文
+	ReleaseDC(pDC);
+	CView::OnLButtonUp(nFlags, point);
+}

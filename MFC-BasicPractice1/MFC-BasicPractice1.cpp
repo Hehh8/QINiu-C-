@@ -130,6 +130,9 @@ protected:
 // 实现
 protected:
 	DECLARE_MESSAGE_MAP()
+public:
+//	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+//	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 };
 
 CAboutDlg::CAboutDlg() noexcept : CDialogEx(IDD_ABOUTBOX)
@@ -142,6 +145,8 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
+//	ON_WM_LBUTTONDOWN()
+//	ON_WM_LBUTTONUP()
 END_MESSAGE_MAP()
 
 // 用于运行对话框的应用程序命令
@@ -174,3 +179,19 @@ void CMFCBasicPractice1App::SaveCustomState()
 
 
 
+
+
+//void CAboutDlg::OnLButtonDown(UINT nFlags, CPoint point)
+//{
+//	// TODO: 在此添加消息处理程序代码和/或调用默认值
+//
+//	CDialogEx::OnLButtonDown(nFlags, point);
+//}
+
+
+//void CAboutDlg::OnLButtonUp(UINT nFlags, CPoint point)
+//{
+//	// TODO: 在此添加消息处理程序代码和/或调用默认值
+//
+//	CDialogEx::OnLButtonUp(nFlags, point);
+//}
