@@ -112,7 +112,7 @@ void CMFCBasicPractice1View::OnLButtonDown(UINT nFlags, CPoint point)
 void CMFCBasicPractice1View::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
-	// 获取设备上下文
+	/* // 获取设备上下文
 	CDC* pDC = GetDC();
 
 	CPen pen(PS_SOLID, 2, RGB(130, 244, 122));
@@ -130,5 +130,19 @@ void CMFCBasicPractice1View::OnLButtonUp(UINT nFlags, CPoint point)
 
 	// 释放设备上下文
 	ReleaseDC(pDC);
+	*/
+
+	CClientDC dc(this);
+
+	CBrush *pBrush = CBrush::FromHandle((HBRUSH)GetStockObject(NULL_BRUSH));
+
+	CBrush* pOldBrush = dc.SelectObject(pBrush);
+
+	// 绘制矩形
+	dc.Rectangle(CRect(m_pOrigin, point));
+
+	// 恢复原画刷
+	dc.SelectObject(pOldBrush);
+
 	CView::OnLButtonUp(nFlags, point);
 }
