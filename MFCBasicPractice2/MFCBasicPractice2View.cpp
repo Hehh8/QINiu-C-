@@ -38,6 +38,7 @@ CMFCBasicPractice2View::CMFCBasicPractice2View() noexcept
 {
 	// TODO: 在此处添加构造代码
 
+	m_nWidth = 0;
 }
 
 CMFCBasicPractice2View::~CMFCBasicPractice2View()
@@ -142,7 +143,7 @@ int CMFCBasicPractice2View::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;
 
 	// TODO:  在此添加您专用的创建代码
-	SetTimer(TIMER_TEXT, 2000, NULL);
+	SetTimer(TIMER_TEXT, 200, NULL);
 
 	return 0;
 }
@@ -151,6 +152,38 @@ int CMFCBasicPractice2View::OnCreate(LPCREATESTRUCT lpCreateStruct)
 void CMFCBasicPractice2View::OnTimer(UINT_PTR nIDEvent)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	CClientDC dc(this);
+	CFont font;
+	font.CreatePointFont(200, _T("华文行楷"));
+	CFont* pOldFont = dc.SelectObject(&font);
+	CString str(_T("你好我好大家好"));
+	dc.SetTextColor(RGB(120, 0, 125));
+	CSize cz = dc.GetTextExtent(str);
+	CRect rect;
+	switch (nIDEvent)
+	{
+	case TIMER_TEXT:
+		m_nWidth += 10;
+		// 获取文字在屏幕的空间大小,长度和宽度
+		rect.left = 200;
+		rect.top = 100;
+		rect.bottom = rect.top + cz.cy;
+		rect.right = rect.left + m_nWidth;
 
+		// 在指定矩形区域内绘制文字
+		dc.DrawText(str, rect, DT_LEFT);
+
+		if (m_nWidth > cz.cx)
+		{
+			m_nWidth = 0;
+			// 擦除屏幕上内容
+			Invalidate();
+		}
+		dc.SelectObject(pOldFont);
+		
+		break;
+	default:
+		break;
+	}
 	CView::OnTimer(nIDEvent);
 }

@@ -45,6 +45,8 @@ public:
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
+protected:
+	int m_nWidth;
 };
 
 #ifndef _DEBUG  // MFCBasicPractice2View.cpp 中的调试版本
