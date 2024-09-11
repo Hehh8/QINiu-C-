@@ -27,7 +27,7 @@ int main()
 		return -1;
 	}
 
-	// 创建套接字
+	// 创建tcp套接字
 	SOCKET sockSrv = socket(AF_INET, SOCK_STREAM, 0);
 
 	// 准备绑定的信息
