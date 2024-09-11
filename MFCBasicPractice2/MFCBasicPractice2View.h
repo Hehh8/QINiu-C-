@@ -4,6 +4,15 @@
 
 #pragma once
 
+#define TIMER_TEXT 9527
+
+enum DRAW_TYPE
+{
+	DT_LINE,
+	DT_RECT,
+	DT_ELLIPSIS,
+	DT_PEN
+};
 
 class CMFCBasicPractice2View : public CView
 {
@@ -47,6 +56,12 @@ public:
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 protected:
 	int m_nWidth;
+	enum DRAW_TYPE m_DrawType;
+public:
+	afx_msg void OnDrawLine();
+protected:
+	CPoint m_pOrigin;
+	bool m_bDraw;
 };
 
 #ifndef _DEBUG  // MFCBasicPractice2View.cpp 中的调试版本

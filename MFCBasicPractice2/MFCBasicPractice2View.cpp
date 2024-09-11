@@ -17,7 +17,6 @@
 #define new DEBUG_NEW
 #endif
 
-#define TIMER_TEXT 9527
 
 // CMFCBasicPractice2View
 
@@ -30,6 +29,7 @@ BEGIN_MESSAGE_MAP(CMFCBasicPractice2View, CView)
 	ON_WM_LBUTTONUP()
 	ON_WM_CREATE()
 	ON_WM_TIMER()
+	ON_COMMAND(ID_DRAW_LINE, &CMFCBasicPractice2View::OnDrawLine)
 END_MESSAGE_MAP()
 
 // CMFCBasicPractice2View 构造/析构
@@ -39,6 +39,7 @@ CMFCBasicPractice2View::CMFCBasicPractice2View() noexcept
 	// TODO: 在此处添加构造代码
 
 	m_nWidth = 0;
+	m_DrawType = DT_LINE;
 }
 
 CMFCBasicPractice2View::~CMFCBasicPractice2View()
@@ -186,4 +187,12 @@ void CMFCBasicPractice2View::OnTimer(UINT_PTR nIDEvent)
 		break;
 	}
 	CView::OnTimer(nIDEvent);
+}
+
+
+void CMFCBasicPractice2View::OnDrawLine()
+{
+	// TODO: 在此添加命令处理程序代码
+	m_DrawType = DT_LINE;
+	MessageBox(_T("点击了画线菜单"));
 }
