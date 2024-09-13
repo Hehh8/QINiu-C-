@@ -26,7 +26,7 @@ int main()
 		return -1;
 	}
 
-	// 创建套接字
+	// 创建UDP套接字
 	SOCKET sockSrv = socket(AF_INET, SOCK_DGRAM, 0);
 
 	// 准备绑定的信息
