@@ -66,6 +66,12 @@ BEGIN_MESSAGE_MAP(CMFCChatServerDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_CBN_SELCHANGE(IDC_COLOUR_COMBO, &CMFCChatServerDlg::OnCbnSelchangeColourCombo)
+	ON_BN_CLICKED(IDC_CAL_BTN, &CMFCChatServerDlg::OnClickedCalBtn)
+	ON_BN_CLICKED(IDC_MAIL_BTN, &CMFCChatServerDlg::OnClickedMailBtn)
+	ON_BN_CLICKED(IDC_QQ_BTN, &CMFCChatServerDlg::OnClickedQqBtn)
+	ON_BN_CLICKED(IDC_SEND_BTN, &CMFCChatServerDlg::OnClickedSendBtn)
+	ON_BN_CLICKED(IDC_START_BTN, &CMFCChatServerDlg::OnClickedStartBtn)
+	ON_BN_CLICKED(IDC_STOP_BTN, &CMFCChatServerDlg::OnClickedStopBtn)
 END_MESSAGE_MAP()
 
 
@@ -157,6 +163,52 @@ HCURSOR CMFCChatServerDlg::OnQueryDragIcon()
 
 
 void CMFCChatServerDlg::OnCbnSelchangeColourCombo()
+{
+	// TODO: 在此添加控件通知处理程序代码
+}
+
+
+void CMFCChatServerDlg::OnClickedCalBtn()
+{
+	// TODO: 在此添加控件通知处理程序代码
+}
+
+
+void CMFCChatServerDlg::OnClickedMailBtn()
+{
+	// TODO: 在此添加控件通知处理程序代码
+}
+
+
+void CMFCChatServerDlg::OnClickedQqBtn()
+{
+	// TODO: 在此添加控件通知处理程序代码
+}
+
+
+void CMFCChatServerDlg::OnClickedSendBtn()
+{
+	// TODO: 在此添加控件通知处理程序代码
+}
+
+
+void CMFCChatServerDlg::OnClickedStartBtn()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	TRACE("[ChatServer]OnClickedStartBtn");
+	CString strPort;
+
+	// 从控件中获取内容
+	GetDlgItem(IDC_PORT_EDIT)->GetWindowTextW(strPort);
+
+	// CString转char *
+	USES_CONVERSION;
+	LPCSTR szPort = (LPCSTR)T2A(strPort);
+	TRACE("[ChatClient]szPort = %s", szPort);
+}
+
+
+void CMFCChatServerDlg::OnClickedStopBtn()
 {
 	// TODO: 在此添加控件通知处理程序代码
 }

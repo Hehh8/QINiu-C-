@@ -65,7 +65,9 @@ BEGIN_MESSAGE_MAP(CMFCChatClientDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-	ON_BN_CLICKED(IDC_CONNECT_BUT, &CMFCChatClientDlg::OnClickedConnectBut)
+	ON_BN_CLICKED(IDC_CONNECT_BTN, &CMFCChatClientDlg::OnClickedConnectBtn)
+	ON_BN_CLICKED(IDC_CLEARMSG_BTN, &CMFCChatClientDlg::OnClickedClearmsgBtn)
+	ON_BN_CLICKED(IDC_DISCONNECT_BTN, &CMFCChatClientDlg::OnClickedDisconnectBtn)
 END_MESSAGE_MAP()
 
 
@@ -156,9 +158,35 @@ HCURSOR CMFCChatClientDlg::OnQueryDragIcon()
 
 
 
-void CMFCChatClientDlg::OnClickedConnectBut()
+void CMFCChatClientDlg::OnClickedConnectBtn()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	TRACE("[ChatClient]Connent was clicked");
 	MessageBoxW(L"Connent was clicked");
+	CString strPort, strIP;
+
+	// 从控件中获取内容
+	GetDlgItem(IDC_PORT_EDIT)->GetWindowTextW(strPort);
+	GetDlgItem(IDC_IPADDRESS)->GetWindowTextW(strIP);
+
+	// CString转char *
+	USES_CONVERSION;
+	LPCSTR szPort = (LPCSTR)T2A(strPort);
+	LPCSTR szIP = (LPCSTR)T2A(strIP);
+	TRACE("[ChatClient]szPort = %s, szIP = %s", szPort, szIP);
+
+
+}
+
+
+void CMFCChatClientDlg::OnClickedClearmsgBtn()
+{
+	// TODO: 在此添加控件通知处理程序代码
+}
+
+
+void CMFCChatClientDlg::OnClickedDisconnectBtn()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	TRACE("[ChatClient]####OnClickedDisconnectBtn");
 }

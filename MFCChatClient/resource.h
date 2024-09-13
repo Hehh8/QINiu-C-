@@ -7,17 +7,17 @@
 #define IDS_ABOUTBOX                    101
 #define IDD_MFCCHATCLIENT_DIALOG        102
 #define IDR_MAINFRAME                   128
-#define IDC_CONNECT_BUT                 1000
-#define IDC_BISCONNECT_BTN              1001
+#define IDC_CONNECT_BTN                 1000
+#define IDC_DISCONNECT_BTN              1001
 #define IDC_CLEARMSG_BTN                1002
 #define IDC_SEND_BUT                    1003
+#define IDC_SEND_BTN                    1003
 #define IDC_SENDMSG_EDIT                1004
 #define IDC_PORT_EDIT                   1006
 #define IDC_COLOUR_COMBO                1007
 #define IDC_LIST1                       1008
 #define IDC_AUTOSENDMSG_EDIT            1010
 #define IDC_AUTOSEND_RADIO              1011
-#define IDC_IPADDRESS1                  1012
 #define IDC_IPADDRESS                   1012
 
 // Next default values for new objects

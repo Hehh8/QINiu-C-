@@ -33,4 +33,10 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnCbnSelchangeColourCombo();
+	afx_msg void OnClickedCalBtn();
+	afx_msg void OnClickedMailBtn();
+	afx_msg void OnClickedQqBtn();
+	afx_msg void OnClickedSendBtn();
+	afx_msg void OnClickedStartBtn();
+	afx_msg void OnClickedStopBtn();
 };
