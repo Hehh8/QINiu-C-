@@ -3,6 +3,8 @@
 //
 
 #pragma once
+#include "CServerSocket.h"
+#include "CChatSocket.h"
 
 
 // CMFCChatServerDlg 对话框
@@ -39,4 +41,9 @@ public:
 	afx_msg void OnClickedSendBtn();
 	afx_msg void OnClickedStartBtn();
 	afx_msg void OnClickedStopBtn();
+	CListBox m_list;
+	CServerSocket* m_server;
+	CTime m_time;
+	CChatSocket* m_chat;
+	
 };
