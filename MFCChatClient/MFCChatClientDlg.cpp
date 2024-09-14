@@ -70,6 +70,7 @@ BEGIN_MESSAGE_MAP(CMFCChatClientDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_CONNECT_BTN, &CMFCChatClientDlg::OnClickedConnectBtn)
 	ON_BN_CLICKED(IDC_CLEARMSG_BTN, &CMFCChatClientDlg::OnClickedClearmsgBtn)
 	ON_BN_CLICKED(IDC_DISCONNECT_BTN, &CMFCChatClientDlg::OnClickedDisconnectBtn)
+	ON_BN_CLICKED(IDC_SEND_BTN, &CMFCChatClientDlg::OnClickedSendBtn)
 END_MESSAGE_MAP()
 
 
@@ -216,4 +217,32 @@ void CMFCChatClientDlg::OnClickedDisconnectBtn()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	TRACE("####[ChatClient]OnClickedDisconnectBtn");
+}
+
+
+void CMFCChatClientDlg::OnClickedSendBtn()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	// 获取编辑框内容
+	CString strTmpMsg;
+	GetDlgItem(IDC_SENDMSG_EDIT)->GetWindowText(strTmpMsg);
+
+	USES_CONVERSION;
+	char* szSendBuf = T2A(strTmpMsg);
+
+	// 发送给服务端
+	m_client->Send(szSendBuf, 200, 0);
+
+	// 显示到列表框
+	CString strShow = _T("我: ");
+	CString strTime;
+	m_time = CTime::GetCurrentTime();
+	strTime = m_time.Format("%X ");
+	strShow = strTime + strShow;
+	strShow += strTmpMsg;
+	m_list.AddString(strShow);
+	m_list.UpdateData(FALSE);
+
+	// 清空编辑框
+	GetDlgItem(IDC_SENDMSG_EDIT)->SetWindowTextW(_T(""));
 }

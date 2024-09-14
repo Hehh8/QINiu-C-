@@ -41,4 +41,5 @@ public:
 	CTime m_time;  // 实时时间
 
 	CEdit m_input;
+	afx_msg void OnClickedSendBtn();
 };

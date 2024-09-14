@@ -192,6 +192,29 @@ void CMFCChatServerDlg::OnClickedQqBtn()
 void CMFCChatServerDlg::OnClickedSendBtn()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	TRACE("####Server OnClickedSendBtn");
+	// 获取编辑框内容
+	CString strTmpMsg;
+	GetDlgItem(IDC_SENDMSG_EDIT)->GetWindowText(strTmpMsg);
+
+	USES_CONVERSION;
+	char* szSendBuf = T2A(strTmpMsg);
+
+	// 发送给客户端
+	m_chat->Send(szSendBuf, 200, 0);
+
+	// 显示到列表框
+	CString strShow = _T("服务端: ");
+	CString strTime;
+	m_time = CTime::GetCurrentTime();
+	strTime = m_time.Format("%X ");
+	strShow = strTime + strShow;
+	strShow += strTmpMsg;
+	m_list.AddString(strShow);
+	m_list.UpdateData(FALSE);
+
+	// 清空编辑框
+	GetDlgItem(IDC_SENDMSG_EDIT)->SetWindowTextW(_T(""));
 }
 
 
