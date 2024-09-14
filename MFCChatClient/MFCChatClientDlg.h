@@ -38,8 +38,8 @@ public:
 
 	CMySocket* m_client;
 	CListBox m_list;
-	CTime m_time;  // 实时时间
-
 	CEdit m_input;
 	afx_msg void OnClickedSendBtn();
+	CString CatShowString(CString strInfo, CString strMsg);
+
 };

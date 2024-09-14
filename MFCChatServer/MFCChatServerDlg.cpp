@@ -194,22 +194,21 @@ void CMFCChatServerDlg::OnClickedSendBtn()
 	// TODO: 在此添加控件通知处理程序代码
 	TRACE("####Server OnClickedSendBtn");
 	// 获取编辑框内容
-	CString strTmpMsg;
-	GetDlgItem(IDC_SENDMSG_EDIT)->GetWindowText(strTmpMsg);
+	CString strMsg;
+	GetDlgItem(IDC_SENDMSG_EDIT)->GetWindowText(strMsg);
 
 	USES_CONVERSION;
-	char* szSendBuf = T2A(strTmpMsg);
+	char* szSendBuf = T2A(strMsg);
 
 	// 发送给客户端
-	m_chat->Send(szSendBuf, 200, 0);
+	m_chat->Send(szSendBuf, SEND_MAX_BUF, 0);
 
 	// 显示到列表框
-	CString strShow = _T("服务端: ");
-	CString strTime;
-	m_time = CTime::GetCurrentTime();
-	strTime = m_time.Format("%X ");
-	strShow = strTime + strShow;
-	strShow += strTmpMsg;
+	CString strShow;
+	CString strInfo = _T("服务端: ");
+	strShow = CatShowString(strInfo, strMsg);
+
+
 	m_list.AddString(strShow);
 	m_list.UpdateData(FALSE);
 
@@ -255,11 +254,12 @@ void CMFCChatServerDlg::OnClickedStartBtn()
 		return;
 	}
 	
-	CString str;
-	m_time = CTime::GetCurrentTime();
-	str = m_time.Format("%X ");
-	str += _T("建立服务");
-	m_list.AddString(str);
+	CString strShow;
+	CString strInfo;
+	CString strMsg = _T("建立服务");
+	strShow = CatShowString(strInfo, strMsg);
+
+	m_list.AddString(strShow);
 	UpdateData(FALSE);
 
 
@@ -270,4 +270,20 @@ void CMFCChatServerDlg::OnClickedStartBtn()
 void CMFCChatServerDlg::OnClickedStopBtn()
 {
 	// TODO: 在此添加控件通知处理程序代码
+}
+
+CString CMFCChatServerDlg::CatShowString(CString strInfo, CString strMsg)
+{
+	// 时间 + 昵称 + 消息
+	CString strTime;
+	CTime timeNow;
+	timeNow = CTime::GetCurrentTime();
+	strTime = timeNow.Format("%X ");
+
+	CString strShow;
+	strShow = strTime + strShow;
+	strShow += strInfo;
+	strShow += strMsg;
+
+	return strShow;
 }

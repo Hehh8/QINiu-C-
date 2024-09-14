@@ -10,9 +10,10 @@
 
 #include "resource.h"		// 主符号
 
+#define SEND_MAX_BUF 200
 
 // CMFCChatClientApp:
-// 有关此类的实现，请参阅 MFCChatClient.cpp
+// 有关此类的实现，请参阅 MFCChatClient.cppF
 //
 
 class CMFCChatClientApp : public CWinApp
