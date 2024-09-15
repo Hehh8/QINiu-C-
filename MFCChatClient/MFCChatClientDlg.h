@@ -42,4 +42,5 @@ public:
 	afx_msg void OnClickedSendBtn();
 	CString CatShowString(CString strInfo, CString strMsg);
 
+	afx_msg void OnClickedSavenameBtn();
 };
