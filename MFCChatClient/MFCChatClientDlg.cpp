@@ -72,6 +72,7 @@ BEGIN_MESSAGE_MAP(CMFCChatClientDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_DISCONNECT_BTN, &CMFCChatClientDlg::OnClickedDisconnectBtn)
 	ON_BN_CLICKED(IDC_SEND_BTN, &CMFCChatClientDlg::OnClickedSendBtn)
 	ON_BN_CLICKED(IDC_SAVENAME_BTN, &CMFCChatClientDlg::OnClickedSavenameBtn)
+	ON_COMMAND(IDC_AUTOSEND_RADIO, &CMFCChatClientDlg::OnAutosendRadio)
 END_MESSAGE_MAP()
 
 
@@ -240,6 +241,7 @@ void CMFCChatClientDlg::OnClickedConnectBtn()
 void CMFCChatClientDlg::OnClickedClearmsgBtn()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	m_list.ResetContent();
 }
 
 
@@ -323,4 +325,20 @@ void CMFCChatClientDlg::OnClickedSavenameBtn()
 	}
 	
 		
+}
+
+
+void CMFCChatClientDlg::OnAutosendRadio()
+{
+	// TODO: 在此添加命令处理程序代码
+	if (((CButton*)GetDlgItem(IDC_AUTOSEND_RADIO))->GetCheck())
+	{
+		TRACE("选中");
+		((CButton*)GetDlgItem(IDC_AUTOSEND_RADIO))->SetCheck(FALSE);
+	}
+	else
+	{
+		TRACE("不选中");
+		((CButton*)GetDlgItem(IDC_AUTOSEND_RADIO))->SetCheck(TRUE);
+	}
 }

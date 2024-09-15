@@ -74,6 +74,7 @@ BEGIN_MESSAGE_MAP(CMFCChatServerDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_SEND_BTN, &CMFCChatServerDlg::OnClickedSendBtn)
 	ON_BN_CLICKED(IDC_START_BTN, &CMFCChatServerDlg::OnClickedStartBtn)
 	ON_BN_CLICKED(IDC_STOP_BTN, &CMFCChatServerDlg::OnClickedStopBtn)
+	ON_BN_CLICKED(IDC_CLEAR_BUT, &CMFCChatServerDlg::OnClickedClearBut)
 END_MESSAGE_MAP()
 
 
@@ -286,4 +287,11 @@ CString CMFCChatServerDlg::CatShowString(CString strInfo, CString strMsg)
 	strShow += strMsg;
 
 	return strShow;
+}
+
+
+void CMFCChatServerDlg::OnClickedClearBut()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	m_list.ResetContent();
 }

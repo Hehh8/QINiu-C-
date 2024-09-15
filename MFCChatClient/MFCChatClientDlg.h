@@ -43,4 +43,5 @@ public:
 	CString CatShowString(CString strInfo, CString strMsg);
 
 	afx_msg void OnClickedSavenameBtn();
+	afx_msg void OnAutosendRadio();
 };

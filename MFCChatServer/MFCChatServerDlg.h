@@ -47,4 +47,5 @@ public:
 	CServerSocket* m_server;
 	CChatSocket* m_chat;
 	CString CatShowString(CString strInfo, CString strMsg);
+	afx_msg void OnClickedClearBut();
 };

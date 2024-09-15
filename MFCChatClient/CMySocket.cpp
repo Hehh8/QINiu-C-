@@ -48,6 +48,28 @@ void CMySocket::OnReceive(int nErrorCode)
 	dlg->m_list.AddString(strShow);
 	dlg->m_list.UpdateData(FALSE);
 
+	if (((CButton*)dlg->GetDlgItem(IDC_AUTOSEND_RADIO))->GetCheck())
+	{
+		// 自动回复
+		// 读编辑框内容
+		CString strAutoSendMsg;
+		dlg->GetDlgItemText(IDC_AUTOSENDMSG_EDIT, strAutoSendMsg);
+
+		// 封包+组格式 时间+昵称+[自动回复]+内容
+		CString strName;
+		dlg->GetDlgItemText(IDC_NAME_EDIT, strName);
+
+		CString strMsg = strName + _T("[自动回复]") + strAutoSendMsg;
+		char* szSendBuf = T2A(strMsg);
+		dlg->m_client->Send(szSendBuf, SEND_MAX_BUF, 0);
+
+		strShow = dlg->CatShowString(_T(""), strMsg);
+		dlg->m_list.AddString(strShow);
+		dlg->m_list.UpdateData(FALSE);
+
+
+	}
+
 
 	CAsyncSocket::OnReceive(nErrorCode);
 }
