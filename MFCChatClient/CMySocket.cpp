@@ -48,7 +48,7 @@ void CMySocket::OnReceive(int nErrorCode)
 	dlg->m_list.AddString(strShow);
 	dlg->m_list.UpdateData(FALSE);
 
-	if (((CButton*)dlg->GetDlgItem(IDC_AUTOSEND_RADIO))->GetCheck())
+	if (((CButton*)dlg->GetDlgItem(IDC_AUTOSEND_CHECK))->GetCheck())
 	{
 		// 自动回复
 		// 读编辑框内容

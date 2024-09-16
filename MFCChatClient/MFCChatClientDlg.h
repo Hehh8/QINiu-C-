@@ -43,5 +43,7 @@ public:
 	CString CatShowString(CString strInfo, CString strMsg);
 
 	afx_msg void OnClickedSavenameBtn();
-	afx_msg void OnAutosendRadio();
+	afx_msg void OnClickedAutosendCheck();
+	CComboBox m_FontColorCombo;
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 };

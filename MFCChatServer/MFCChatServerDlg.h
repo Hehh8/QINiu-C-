@@ -48,4 +48,6 @@ public:
 	CChatSocket* m_chat;
 	CString CatShowString(CString strInfo, CString strMsg);
 	afx_msg void OnClickedClearBut();
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+	CComboBox m_FontColorCombo;
 };
